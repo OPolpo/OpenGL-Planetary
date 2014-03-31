@@ -15,10 +15,7 @@
 
 #define SDL_main main //poi qualcuno me la dovrà spiegare sta cosa...
 
-#include <SDL.h>
-#include <SDL_image.h>
 
-SDL_Surface* sdlimage;
 
 
 // Function prototypes
@@ -65,12 +62,6 @@ void drawScene(void){
 	menu();
 	gluLookAt (eye[0], eye[1], eye[2], 0.0, 0.0, 0.0, 0.0, 0.0, 1.0);
 
-
-
-	// drawSun(AnimationAngle,texName1);
-	// drawEarth(AnimationAngle,texName2);
-	// drawMars(AnimationAngle,texName3);
-	// drawStars(AnimationAngle,texName4);
 	drawSun(AnimationAngle);
 	drawEarth(AnimationAngle);
 	drawMars(AnimationAngle);

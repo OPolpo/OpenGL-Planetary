@@ -62,6 +62,7 @@ void drawSun(double angle){
 					texName1);
 	glPopAttrib();
 }
+
 void drawEarth(double angle){
 	drawPlanet(1000*angle, 1.5, 7.0, 0.0, 0.0,
 				365.0, 24.0,
@@ -78,56 +79,23 @@ void drawMars(double angle){
 				texName3);
 }
 
+void createTexture(GLuint* text_name, char* file_path){
+	sdlimage = IMG_Load(file_path);
+   	glGenTextures(1, text_name);
+   	glBindTexture(GL_TEXTURE_2D, *text_name);
+   	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+  	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+  	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+ 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+  	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA, sdlimage->w, sdlimage->h, 0, GL_BGRA, GL_UNSIGNED_BYTE, sdlimage->pixels );
+}
+
 void loadTexture(){
-	sdlimage = IMG_Load("./texture/sun.png");
-	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-   	glGenTextures(1, &texName1);
-   	glBindTexture(GL_TEXTURE_2D, texName1);
-   	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-  	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-  	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
- 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-  	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA, sdlimage->w, sdlimage->h, 0, GL_BGRA, GL_UNSIGNED_BYTE, sdlimage->pixels );
-
-  	sdlimage = IMG_Load("./texture/earth.png");
-	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-   	glGenTextures(1, &texName2);
-   	glBindTexture(GL_TEXTURE_2D, texName2);
-   	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-  	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-  	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
- 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-  	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA, sdlimage->w, sdlimage->h, 0, GL_BGRA, GL_UNSIGNED_BYTE, sdlimage->pixels );
-
-  	sdlimage = IMG_Load("./texture/mars.jpg");
-	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-   	glGenTextures(1, &texName3);
-   	glBindTexture(GL_TEXTURE_2D, texName3);
-   	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-  	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-  	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
- 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-  	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA, sdlimage->w, sdlimage->h, 0, GL_BGRA, GL_UNSIGNED_BYTE, sdlimage->pixels );
-
-  	sdlimage = IMG_Load("./texture/stars.png");
-	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-   	glGenTextures(1, &texName4);
-   	glBindTexture(GL_TEXTURE_2D, texName4);
-   	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-  	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-  	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
- 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-  	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA, sdlimage->w, sdlimage->h, 0, GL_BGRA, GL_UNSIGNED_BYTE, sdlimage->pixels );
-
-  	sdlimage = IMG_Load("./texture/Tardis.png");
-	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-   	glGenTextures(1, &texName5);
-   	glBindTexture(GL_TEXTURE_2D, texName5);
-   	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-  	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-  	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
- 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-  	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA, sdlimage->w, sdlimage->h, 0, GL_BGRA, GL_UNSIGNED_BYTE, sdlimage->pixels );
+	createTexture(&texName1,"./texture/sun.png");
+	createTexture(&texName2,"./texture/earth.png");
+	createTexture(&texName3,"./texture/mars.jpg");
+	createTexture(&texName4,"./texture/stars.png");
+	createTexture(&texName5,"./texture/Tardis.png");
 }
 
 
@@ -185,7 +153,7 @@ void drawStars(double angle){
 	glPushAttrib(GL_LIGHTING_BIT);
 		GLfloat material_col[] = {1.0, 1.0, 1.0};
 		glMaterialfv(GL_FRONT, GL_EMISSION, material_col);
-		drawPlanet(1000*angle, 40, 0.0, 0.0, 0.0,
+		drawPlanet(1000*angle, 50, 0.0, 0.0, 0.0,
 					0, 1000000.0,
 					0.0, 0.0, 0.0, 0.0,
 					0.0, 0.0, 0.0, 0.0,
