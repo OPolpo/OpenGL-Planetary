@@ -22,7 +22,7 @@
 	extern double eye_distance;
 	
 	
-	#define MOVEMENTE_COEFFICIENT 0.05
+	#define MOVEMENT_COEFFICIENT 0.05
 	
 	extern int window_h;
 	extern int window_w;

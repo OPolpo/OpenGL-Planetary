@@ -30,27 +30,27 @@ void myKeyboardFunc(unsigned char key, int x, int y){
 		glutPostRedisplay();
 		break;
 	case 'w':
-		eye_distance-=MOVEMENTE_COEFFICIENT*5;
+		eye_distance-=MOVEMENT_COEFFICIENT*5;
 		glutPostRedisplay();
 		break;
 	case 's':
-		eye_distance+=MOVEMENTE_COEFFICIENT*5;
+		eye_distance+=MOVEMENT_COEFFICIENT*5;
 		glutPostRedisplay();
 		break;
 	case 'a':
-		viewAngle_horizontal+=MOVEMENTE_COEFFICIENT;
+		viewAngle_horizontal+=MOVEMENT_COEFFICIENT;
 		glutPostRedisplay();
 		break;
 	case 'd':
-		viewAngle_horizontal-=MOVEMENTE_COEFFICIENT;
+		viewAngle_horizontal-=MOVEMENT_COEFFICIENT;
 		glutPostRedisplay();
 		break;
 	case 'c':
-		viewAngle_vertical-=MOVEMENTE_COEFFICIENT;
+		viewAngle_vertical-=MOVEMENT_COEFFICIENT;
 		glutPostRedisplay();
 		break;
 	case 'v':
-		viewAngle_vertical+=MOVEMENTE_COEFFICIENT;
+		viewAngle_vertical+=MOVEMENT_COEFFICIENT;
 		glutPostRedisplay();
 		break;
 	case 27:	// Escape key
