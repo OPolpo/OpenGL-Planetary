@@ -1,3 +1,12 @@
+/**
+ * @file planets.c
+ * @author Andrea Bocchese
+ * @date 31 Mar 2014
+ * @brief draw planets and other stuff
+ *
+ * In this file there are the function the print planet orbit and axis and the menu
+ */
+
 #include "planets.h"
 #include <SDL.h>
 #include <SDL_image.h>
@@ -16,6 +25,27 @@ static GLuint texName4;
 static GLuint texName5;
 
 void drawAxis(double radius, GLfloat color[3]);
+
+/**
+ * @brief Print Generic Planet.
+ * This function print a generic planet.
+ * @param main_animation_angle this angle is used to animate the planet.
+ * @param radius the radisu of the sphere that represent the planet.
+ * @param po_x x position of the planet.
+ * @param po_y y position of the planet.
+ * @param po_z z position of the planet.
+ * @param year_length the lenght of the year expressed in earth day.
+ * @param day_length the lenght of the day expressed in earth hours.
+ * @param orbital_angle inclination of the orbit.
+ * @param orb_x direction of orbital inclination.
+ * @param orb_y direction of orbital inclination.
+ * @param orb_z direction of orbital inclination.
+ * @param axis_angle inclination of the axis of the planet.
+ * @param axis_x direction of axis inclination.
+ * @param axis_y direction of axis inclination.
+ * @param axis_z direction of axis inclination.
+ * @param text_name texture indices.
+ */
 void drawPlanet(double main_animation_angle, double radius, double pos_x, double pos_y, double pos_z,
 				double year_legth, double day_length, 
 				double orbital_angle, double orb_x, double orb_y, double orb_z,
@@ -51,6 +81,11 @@ void drawPlanet(double main_animation_angle, double radius, double pos_x, double
 	glPopMatrix();
 }
 
+/**
+ * @brief Print Sun.
+ * This function print Sun.
+ * @param angle change this value to move the sun in the next position.
+ */
 void drawSun(double angle){
 	glPushAttrib(GL_LIGHTING_BIT);
 		GLfloat material_col[] = {1.0, 1.0, 1.0};
@@ -63,6 +98,11 @@ void drawSun(double angle){
 	glPopAttrib();
 }
 
+/**
+ * @brief Print Earth.
+ * This function print Earth.
+ * @param angle change this value to move the Earth in the next position.
+ */
 void drawEarth(double angle){
 	drawPlanet(1000*angle, 1.5, 7.0, 0.0, 0.0,
 				365.0, 24.0,
@@ -71,6 +111,11 @@ void drawEarth(double angle){
 				texName2);
 }
 
+/**
+ * @brief Print Mars.
+ * This function print Mars.
+ * @param angle change this value to move the Mars in the next position.
+ */
 void drawMars(double angle){
 	drawPlanet(1000*angle, 0.9, 14.0, 0.0, 0.0,
 				687, 24.0,
@@ -79,6 +124,12 @@ void drawMars(double angle){
 				texName3);
 }
 
+/**
+ * @brief Create a texture.
+ * This function build the texture from a path of an image.
+ * @param text_name this is the address of a GLuint texture index.
+ * @param file_path the path of the image file.
+ */
 void createTexture(GLuint* text_name, char* file_path){
 	sdlimage = IMG_Load(file_path);
    	glGenTextures(1, text_name);
@@ -90,6 +141,10 @@ void createTexture(GLuint* text_name, char* file_path){
   	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA, sdlimage->w, sdlimage->h, 0, GL_BGRA, GL_UNSIGNED_BYTE, sdlimage->pixels );
 }
 
+/**
+ * @brief create all texture needed.
+ * This function build all the texture.
+ */
 void loadTexture(){
 	createTexture(&texName1,"./texture/sun.png");
 	createTexture(&texName2,"./texture/earth.png");
@@ -107,9 +162,18 @@ void loadTexture(){
 
 
 
+
+//*****************************************************************
 //*****************************************************************
 //                           INUTILITY :)
 //*****************************************************************
+//*****************************************************************
+
+/**
+ * The follow function are not commented cause are just random stuff
+ * added to the original request of the assignment.
+ */
+
 
 int enableOrbit(){
 	if(ORBIT){

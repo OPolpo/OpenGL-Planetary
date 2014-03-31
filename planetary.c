@@ -16,20 +16,19 @@
 #define SDL_main main //poi qualcuno me la dovrà spiegare sta cosa...
 
 
-
-
 // Function prototypes
 void drawScene(void);
 
 int RunMode = 1;		// Used as a boolean (1 or 0) for "on" and "off"
 
-double viewAngle_horizontal=0.30;//radianti
-double viewAngle_vertical=-0.39;//radianti
+// this to set initial view point
+double viewAngle_horizontal=0.30;//radiant
+double viewAngle_vertical=-0.39;//radiant
 double eye_distance=30;
-double eye[3]={0,0,0};
 
-int xx=0;
-int yy=0;
+double eye[3]={0,0,0};// i suggest to use engle and distance to set pov and not this value
+
+
 int window_h=720;
 int window_w=720;
 
@@ -55,11 +54,11 @@ void drawScene(void){
  			AnimationAngle -= 360.0*floor(AnimationAngle/360.0);
  	}
 
-
-
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	menu();
+
+	menu();// print the on screen menu
+
 	gluLookAt (eye[0], eye[1], eye[2], 0.0, 0.0, 0.0, 0.0, 0.0, 1.0);
 
 	drawSun(AnimationAngle);
@@ -67,8 +66,8 @@ void drawScene(void){
 	drawMars(AnimationAngle);
 	drawStars(AnimationAngle);
 	
-	// glEnable(GL_FUNNY_MODE)
-	WHO(100*AnimationAngle);
+	
+	WHO(100*AnimationAngle);// glEnable(GL_FUNNY_MODE)
 
     glFlush();
     glutSwapBuffers();

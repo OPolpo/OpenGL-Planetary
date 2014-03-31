@@ -24,9 +24,6 @@
 	
 	#define MOVEMENTE_COEFFICIENT 0.05
 	
-	//extern int xx;
-	//extern int yy;
-	
 	extern int window_h;
 	extern int window_w;
 	

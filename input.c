@@ -58,7 +58,10 @@ void myKeyboardFunc(unsigned char key, int x, int y){
 	}
 	locateCamera();
 }
-
+/**
+ * @brief compute the camera position
+ * This function set the the eye position (camera) using the angle (horizontal and vertical) and the distance
+ */
 void locateCamera(){
 	eye[2]=-sin(viewAngle_vertical)*eye_distance;
 	eye[0]=sin(viewAngle_horizontal)*(eye_distance-(1-cos(viewAngle_vertical))*eye_distance);
